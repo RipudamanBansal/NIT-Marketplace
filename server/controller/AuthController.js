@@ -32,9 +32,6 @@ const Signup = async (req, res) => {
     const newUser = new UserModel({ name, email, password });
     newUser.password = await bcrypt.hash(password, 10);
     await newUser.save();
-    res
-      .status(201)
-      .json({ message: "User created successfully", success: true });
 
     const token = jwt.sign(
       { userId: newUser._id, email: newUser.email },
