@@ -5,15 +5,18 @@ const UserModel = require("../model/user");
 const Signup = async (req, res) => {
   try {
     // Check if the required fields are present
-    if (!req.body.name || !req.body.email || !req.body.password) {  
+    if (!req.body.name || !req.body.email || !req.body.password) {
       return res
         .status(400)
-        .json({ message: "Name, email, and password are required", success: false });
+        .json({
+          message: "Name, email, and password are required",
+          success: false,
+        });
     }
-    
+
     // Destructure request body
     const { name, email, password } = req.body;
-    
+
     // Validate input
     if (!name || !email || !password) {
       return res
