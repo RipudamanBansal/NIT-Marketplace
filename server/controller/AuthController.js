@@ -30,7 +30,7 @@ const Signup = async (req, res) => {
     }
     // Create new user
     const newUser = new UserModel({ name, email, password });
-    newUser.password = await bcrypt.hash(passoword, 10);
+    newUser.password = await bcrypt.hash(password, 10);
     await newUser.save();
     res
       .status(201)
@@ -41,7 +41,7 @@ const Signup = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "24h" }
     );
-    res.status(201).json({
+    return res.status(201).json({
       message: "Signup successful",
       success: true,
       token,
