@@ -11,8 +11,12 @@ const PORT = process.env.PORT || 3000;
 
 app.use(cors());
 app.use(bodyParser.json());
-app.use(ensureAuthenticated);
+
+// Public routes
 app.use("/auth", AuthRouter);
+
+// Protect further routes below this line
+// app.use(ensureAuthenticated);
 
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
