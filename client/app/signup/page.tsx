@@ -27,11 +27,6 @@ const SignUpPage = () => {
     event.preventDefault();
     setLoading(true);
     setMessage("");
-    // Simulate an API call
-    setTimeout(() => {
-      setLoading(false);
-      setMessage("Sign up successful!");
-    }, 2000);
     try {
       const res = await fetch("http://localhost:3000/auth/signup", {
         method: "POST",
@@ -40,7 +35,7 @@ const SignUpPage = () => {
       });
       const data = await res.json();
       if (res.ok) {
-        setMessage("Sign up successfull!");
+        setMessage("Sign up successful!");
         setForm({ name: "", email: "", password: "" });
       } else {
         setMessage(data.message || "Sign up failed. Please try again.");
@@ -49,7 +44,7 @@ const SignUpPage = () => {
       console.error("Error during sign up:", error);
       setMessage("Sign up failed. Please try again.");
     }
-      setLoading(false);
+    setLoading(false);
   };
 
   return (
@@ -58,7 +53,7 @@ const SignUpPage = () => {
       <form onSubmit={handleSubmit}>
         <label>
           Name:
-          <input className="border p-2" type="name" name="name" value={form.name} onChange={handleChange} required />
+          <input className="border p-2" type="text" name="name" value={form.name} onChange={handleChange} required />
         </label>
         <label>
           Email:
